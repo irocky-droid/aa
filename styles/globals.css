@@ -2,11 +2,161 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	@apply min-h-screen select-none bg-zinc-50 text-zinc-900 antialiased p-safe dark:bg-zinc-900 dark:text-zinc-50;
+@layer base {
+	body {
+		@apply min-h-screen select-none bg-zinc-50 text-zinc-900 antialiased p-safe dark:bg-zinc-900 dark:text-zinc-50;
+		
+		/* PWA enhancements */
+		-webkit-overflow-scrolling: touch;
+		-webkit-tap-highlight-color: transparent;
+		-webkit-touch-callout: none;
+		
+		/* iOS 26 gradient background */
+		background: linear-gradient(
+			135deg,
+			#667eea 0%,
+			#764ba2 25%,
+			#f093fb 50%,
+			#f5576c 75%,
+			#4facfe 100%
+		);
+		background-attachment: fixed;
+	}
+	
+	.dark body {
+		background: linear-gradient(
+			135deg,
+			#1a1a2e 0%,
+			#16213e 25%,
+			#0f3460 50%,
+			#533483 75%,
+			#e94560 100%
+		);
+	}
+}
 
-	/* PWA enhancements */
-	-webkit-overflow-scrolling: touch;
-	-webkit-tap-highlight-color: transparent;
-	-webkit-touch-callout: none;
+@layer components {
+	/* Glassmorphism utility */
+	.glass {
+		@apply backdrop-blur-xl bg-glass-light border border-white/20 shadow-lg;
+	}
+	
+	.glass-light {
+		@apply backdrop-blur-md bg-white/10 border border-white/10;
+	}
+	
+	.glass-medium {
+		@apply backdrop-blur-lg bg-white/25 border border-white/25;
+	}
+	
+	.glass-dark {
+		@apply backdrop-blur-xl bg-black/30 border border-white/15;
+	}
+	
+	/* Calculator specific styles */
+	.calculator-display {
+		@apply glass-dark rounded-3xl p-6 text-right;
+	}
+	
+	.calculator-button {
+		@apply glass-light rounded-full aspect-square flex items-center justify-center text-xl font-medium
+			   transition-all duration-150 ease-out
+			   hover:bg-white/40 active:scale-95 active:bg-white/60
+			   cursor-pointer select-none;
+	}
+	
+	.calculator-button-primary {
+		@apply glass-medium text-white font-semibold;
+	}
+	
+	.calculator-button-accent {
+		@apply bg-orange-500/60 backdrop-blur-lg text-white font-semibold;
+	}
+	
+	.calculator-button-delete {
+		@apply bg-red-500/40 backdrop-blur-lg text-white;
+	}
+	
+	/* Ripple effect container */
+	.ripple-container {
+		@apply relative overflow-hidden;
+	}
+	
+	.ripple {
+		@apply absolute rounded-full bg-white/40;
+		animation: ripple-animation 0.6s ease-out forwards;
+	}
+	
+	/* Hide scrollbar but keep functionality */
+	.hide-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+@layer utilities {
+	/* iOS Spring animation utility */
+	.spring {
+		transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	}
+	
+	/* Smooth transition */
+	.smooth {
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	
+	/* Text gradient for headers */
+	.text-gradient {
+		@apply bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70;
+	}
+	
+	/* Glow effects */
+	.glow-white {
+		box-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+					0 0 40px rgba(255, 255, 255, 0.1);
+	}
+	
+	.glow-accent {
+		box-shadow: 0 0 20px rgba(255, 180, 50, 0.4),
+					0 0 40px rgba(255, 180, 50, 0.2);
+	}
+}
+
+/* Keyframe animations */
+@keyframes ripple-animation {
+	0% {
+		transform: scale(0);
+		opacity: 0.5;
+	}
+	100% {
+		transform: scale(2.5);
+		opacity: 0;
+	}
+}
+
+/* Page transitions */
+.page-enter {
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.page-enter-active {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Haptic feedback visual equivalent */
+.haptic-light {
+	animation: haptic-light 0.1s ease-out;
+}
+
+@keyframes haptic-light {
+	0% { transform: scale(1); }
+	50% { transform: scale(0.98); }
+	100% { transform: scale(1); }
 }

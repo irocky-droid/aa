@@ -1,36 +1,19 @@
-import Page from '@/components/page'
-import Section from '@/components/section'
+import Head from 'next/head'
+import Calculator from '@/components/calculator/Calculator'
 
 const Index = () => (
-	<Page>
-		<Section>
-			<h2 className='text-xl font-semibold text-zinc-800 dark:text-zinc-200'>
-				We grow a lot of rice.
-			</h2>
-
-			<div className='mt-2'>
-				<p className='text-zinc-600 dark:text-zinc-400'>
-					You love rice, and so does the rest of the world. In the crop year
-					2008/2009, the milled rice production volume amounted to over{' '}
-					<span className='font-medium text-zinc-900 dark:text-zinc-50'>
-						448 million tons
-					</span>{' '}
-					worldwide.
-				</p>
-
-				<br />
-
-				<p className='text-sm text-zinc-600 dark:text-zinc-400'>
-					<a
-						href='https://github.com/mvllow/next-pwa-template'
-						className='underline'
-					>
-						Source
-					</a>
-				</p>
-			</div>
-		</Section>
-	</Page>
+	<>
+		<Head>
+			<title>iOS Calc 26 </title>
+			<meta name='description' content='A beautiful iOS 26 style calculator built with Next.js' />
+			<meta name='theme-color' content='#667eea' media='(prefers-color-scheme: light)' />
+			<meta name='theme-color' content='#1a1a2e' media='(prefers-color-scheme: dark)' />
+		</Head>
+		
+		<div className='min-h-screen'>
+			<Calculator />
+		</div>
+	</>
 )
 
 export default Index

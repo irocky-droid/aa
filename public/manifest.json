@@ -1,7 +1,7 @@
 {
-	"name": "Rice Bowl",
-	"short_name": "Rice Bowl",
-	"description": "Fluffless jasmine rice for those cold winter nights",
+	"name": "iOS 26 Calculator",
+	"short_name": "Calculator",
+	"description": "A beautiful iOS 26 style calculator with glassmorphism design",
 	"icons": [
 		{
 			"src": "/images/icon-192.png",
@@ -29,5 +29,8 @@
 	"start_url": "/?source=pwa",
 	"orientation": "portrait",
 	"display": "standalone",
-	"scope": "/"
+	"background_color": "#667eea",
+	"theme_color": "#667eea",
+	"scope": "/",
+	"categories": ["utilities", "productivity"]
 }
